@@ -21,7 +21,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+const BONUS_QUESTION_INDEX = 2; // Index of the bonus question in the array
 // Quiz settings
 const questions = [
     {
@@ -86,8 +86,14 @@ function renderQuestion() {
 function submitAnswer(answer) {
     const current = questions[currentQuestion];
     if (answer === current.correct) {
-        userScore += 10;
+        // Check if the current question is the bonus question
+        if (currentQuestion === BONUS_QUESTION_INDEX) {
+            userScore += 20; // Double points for the bonus question
+        } else {
+            userScore += 10;
+        }
     }
+    
     currentQuestion++;
     renderQuestion();
 }
