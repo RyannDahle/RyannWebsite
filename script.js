@@ -89,6 +89,7 @@ function submitAnswer(answer) {
         // Check if the current question is the bonus question
         if (currentQuestion === BONUS_QUESTION_INDEX) {
             userScore += 20; // Double points for the bonus question
+            alert("Bonus question answered correctly! You get double points!");
         } else {
             userScore += 10;
         }
