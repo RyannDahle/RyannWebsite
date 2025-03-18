@@ -1,6 +1,13 @@
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    limit
+} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyACL2uv7OrlEi1aStBwpGAB0gMmlnQ0S9I",
@@ -12,51 +19,48 @@ const firebaseConfig = {
     measurementId: "G-EN9P6J2DGN"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 function submitAnswer(answer) {
-    let correctAnswer = "Paris";
-    let userName = prompt("Enter your name:");
+    const correctAnswer = "Paris";
+    const userName = prompt("Enter your name:");
+    if (!userName) return; // Cancelled prompt
 
-    if (!userName) return; // If user cancels prompt
-
-    let score = answer === correctAnswer ? 10 : 0;
+    const score = answer === correctAnswer ? 10 : 0;
     
     // Save score to Firebase
     addDoc(collection(db, "scores"), {
         name: userName,
         score: score
-    }).then(() => {
+    })
+    .then(() => {
         console.log("Score saved!");
         loadLeaderboard();
-    }).catch(error => console.error("Error saving score:", error));
+    })
+    .catch(error => console.error("Error saving score:", error));
 }
 
-// Expose functions to the global scope for HTML access
-window.submitAnswer = submitAnswer;
-
-// Fetch and display leaderboard
-// Fetch and display leaderboard
 function loadLeaderboard() {
     const leaderboard = document.getElementById("leaderboard");
     const q = query(collection(db, "scores"), orderBy("score", "desc"), limit(5));
-    
     leaderboard.innerHTML = "";
 
     getDocs(q)
     .then(snapshot => {
         snapshot.forEach(doc => {
-            let data = doc.data();
-            let li = document.createElement("li");
+            const data = doc.data();
+            const li = document.createElement("li");
             li.innerText = `${data.name}: ${data.score} points`;
             leaderboard.appendChild(li);
-// Load leaderboard on page load
-window.onload = loadLeaderboard;
-
-// Expose functions to the global scope
-window.loadLeaderboard = loadLeaderboard;ror("Error loading leaderboard:", error));
+        });
+    })
+    .catch(error => console.error("Error loading leaderboard:", error));
 }
+
+// Expose functions to the global scope for HTML access
+window.submitAnswer = submitAnswer;
+window.loadLeaderboard = loadLeaderboard;
+
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
