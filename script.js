@@ -146,6 +146,33 @@ function loadLeaderboard() {
 window.startQuiz = startQuiz;
 window.loadLeaderboard = loadLeaderboard;
 
+function printQuestionsAndAnswers() {
+    const quizDiv = document.getElementById("quiz");
+    quizDiv.innerHTML += "<h3>Quiz Questions and Answers:</h3>";
+    questions.forEach((q, index) => {
+        quizDiv.innerHTML += `<p>${index + 1}. ${q.question}</p>`;
+        quizDiv.innerHTML += `<p>Correct Answer: ${q.correct}</p>`;
+    });
+}
+
+// Call the function after finishing the quiz
+function finishQuiz() {
+    const quizDiv = document.getElementById("quiz");
+    quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}</p>`;
+
+    // Save the score to Firebase
+    addDoc(collection(db, "scores"), {
+        name: userName,
+        score: userScore
+    })
+    .then(() => {
+        console.log("Score saved!");
+        loadLeaderboard();
+        printQuestionsAndAnswers(); // Print questions and answers
+    })
+    .catch(error => console.error("Error saving score:", error));
+}
+
 // Start the quiz when page loads
 window.onload = () => {
     loadLeaderboard();
