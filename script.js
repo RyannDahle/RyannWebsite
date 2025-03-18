@@ -20,28 +20,6 @@ const firebaseConfig = {
     measurementId: "G-EN9P6J2DGN"
 };
 
-// Returns the ordinal suffix for a given number (e.g. "st", "nd", etc.)
-function getOrdinal(n) {
-    const s = ["th", "st", "nd", "rd"],
-        v = n % 100;
-    return s[(v - 20) % 10] || s[v] || s[0];
-}
-
-// Gets the user's placement by querying all scores ordered descending.
-async function getUserPlacement() {
-    const allScoresQuery = query(collection(db, "scores"), orderBy("score", "desc"));
-    const snapshot = await getDocs(allScoresQuery);
-    let placement = 1;
-    for (const doc of snapshot.docs) {
-        const data = doc.data();
-        if (data.name === userName && data.score === userScore) {
-            return placement;
-        }
-        placement++;
-    }
-    return null;
-}
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const BONUS_QUESTION_INDEX = 2; // Index of the bonus question in the array
@@ -133,14 +111,7 @@ function submitAnswer(answer) {
 
 function finishQuiz() {
     const quizDiv = document.getElementById("quiz");
-    place = getUserPlacement();
-    if (place) {
-        const ordinal = getOrdinal(place);
-        quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}. You placed ${place}${ordinal} on the leaderboard!</p>`;
-    } else {
-        quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}. You are not on the leaderboard.</p>`;
-    }
-
+    quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}</p>`;
 
     // Save the score to Firebase
     addDoc(collection(db, "scores"), {
@@ -170,44 +141,7 @@ function loadLeaderboard() {
     })
     .catch(error => console.error("Error loading leaderboard:", error));
 }
-function displayQuestionsAndAnswers() {
-    const quizDiv = document.getElementById("quiz");
-    
-    // Create a section for questions and answers
-    const qaSection = document.createElement("div");
-    qaSection.className = "questions-answers";
-    qaSection.innerHTML = "<h3>Quiz Questions and Answers</h3>";
-    
-    // Loop through all questions
-    questions.forEach((q, index) => {
-        const questionDiv = document.createElement("div");
-        questionDiv.className = "qa-item";
-        
-        // Add bonus indicator
-        const bonusText = (index === BONUS_QUESTION_INDEX) ? " (Bonus Question)" : "";
-        
-        questionDiv.innerHTML = `
-            <p><strong>Question ${index + 1}${bonusText}:</strong> ${q.question}</p>
-            <p><strong>Correct answer:</strong> ${q.correct}</p>
-        `;
-        qaSection.appendChild(questionDiv);
-    });
-    
-    // Append to the quiz div
-    quizDiv.appendChild(qaSection);
-}
 
-// Store the original finishQuiz function
-const originalFinishQuiz = finishQuiz;
-
-// Override with enhanced version
-finishQuiz = function() {
-    // Call the original first
-    originalFinishQuiz();
-    
-    // Add a small delay to ensure the original finishQuiz has completed its DOM updates
-    setTimeout(displayQuestionsAndAnswers, 100);
-};
 // Expose functions to the global scope if needed
 window.startQuiz = startQuiz;
 window.loadLeaderboard = loadLeaderboard;
