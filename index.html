@@ -1,3 +1,71 @@
 <!--
 title: Devour Feculence
 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Game</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trivia Game</h1>
+    <div id="trivia-container">
+        <div class="question">
+            <p>What is the capital of France?</p>
+            <input type="radio" name="q1" value="Paris"> Paris<br>
+            <input type="radio" name="q1" value="London"> London<br>
+            <input type="radio" name="q1" value="Berlin"> Berlin<br>
+        </div>
+        <button onclick="submitTrivia()">Submit</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        function submitTrivia() {
+            const answer = document.querySelector('input[name="q1"]:checked').value;
+            const resultDiv = document.getElementById('result');
+
+            db.collection("triviaResults").add({
+                answer: answer,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            })
+            .then(() => {
+                resultDiv.innerHTML = "Your answer has been saved!";
+            })
+            .catch((error) => {
+                console.error("Error saving answer: ", error);
+                resultDiv.innerHTML = "Error saving your answer.";
+            });
+        }
+    </script>
+</body>
+</html>
