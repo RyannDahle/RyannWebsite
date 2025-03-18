@@ -1,14 +1,36 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    query,
-    orderBy,
-    limit,
-    where // Add this line
-} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+function finishQuiz() {
+    const quizDiv = document.getElementById("quiz");
+    quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}</p>`;
+    
+    // First, get all existing scores to determine placement
+    const allScoresQuery = query(collection(db, "scores"), orderBy("score", "desc"));
+    
+    getDocs(allScoresQuery)
+    .then(snapshot => {
+        const allScores = snapshot.docs.map(doc => doc.data().score);
+        // Count scores higher than the user's score for placement
+        const higherScores = allScores.filter(score => score > userScore);
+        const placement = higherScores.length + 1;
+        const totalPlayers = allScores.length + 1; // +1 to include current player
+        
+        // Display the placement
+        const placementInfo = document.createElement("p");
+        placementInfo.innerText = `Your placement: ${placement} out of ${totalPlayers}`;
+        quizDiv.appendChild(placementInfo);
+        
+        // Save the score to Firebase
+        return addDoc(collection(db, "scores"), {
+            name: userName,
+            score: userScore
+        });
+    })
+    .then(() => {
+        console.log("Score saved!");
+        loadLeaderboard();
+    })
+    .catch(error => console.error("Error:", error));
+}
 
 const firebaseConfig = {
     apiKey: "AIzaSyACL2uv7OrlEi1aStBwpGAB0gMmlnQ0S9I",
