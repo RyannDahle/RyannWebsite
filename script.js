@@ -23,10 +23,9 @@ function submitAnswer(answer) {
     if (!userName) return; // If user cancels prompt
 
     let score = answer === correctAnswer ? 10 : 0;
-    addDoc(collection(db, "scores"), {
-
+    
     // Save score to Firebase
-    db.collection("scores").add({
+    addDoc(collection(db, "scores"), {
         name: userName,
         score: score
     }).then(() => {
@@ -36,12 +35,14 @@ function submitAnswer(answer) {
 }
 
 // Fetch and display leaderboard
+// Fetch and display leaderboard
 function loadLeaderboard() {
+    const leaderboard = document.getElementById("leaderboard");
     const q = query(collection(db, "scores"), orderBy("score", "desc"), limit(5));
-    getDocs(q)
+    
     leaderboard.innerHTML = "";
 
-    db.collection("scores").orderBy("score", "desc").limit(5).get()
+    getDocs(q)
     .then(snapshot => {
         snapshot.forEach(doc => {
             let data = doc.data();
@@ -49,8 +50,7 @@ function loadLeaderboard() {
             li.innerText = `${data.name}: ${data.score} points`;
             leaderboard.appendChild(li);
         });
-    });
+    }).catch(error => console.error("Error loading leaderboard:", error));
 }
-
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
