@@ -65,7 +65,7 @@ async function startQuiz() {
     const userSnapshot = await getDocs(userQuery);
 
     if (!userSnapshot.empty) {
-        alert("You have already played the quiz. You cannot play again.");
+        alert("Hey! Are you trying to cheat? You already played!");
         return;
     }
 
