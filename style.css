@@ -57,7 +57,7 @@ button:hover {
     counter-increment: leaderboard-counter;
     content: counter(leaderboard-counter) ".";
     position: absolute;
-    left: -30px;
+    left: -20px;
     font-weight: bold;
 }
 
