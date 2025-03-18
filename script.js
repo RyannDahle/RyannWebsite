@@ -20,6 +20,28 @@ const firebaseConfig = {
     measurementId: "G-EN9P6J2DGN"
 };
 
+// Returns the ordinal suffix for a given number (e.g. "st", "nd", etc.)
+function getOrdinal(n) {
+    const s = ["th", "st", "nd", "rd"],
+        v = n % 100;
+    return s[(v - 20) % 10] || s[v] || s[0];
+}
+
+// Gets the user's placement by querying all scores ordered descending.
+async function getUserPlacement() {
+    const allScoresQuery = query(collection(db, "scores"), orderBy("score", "desc"));
+    const snapshot = await getDocs(allScoresQuery);
+    let placement = 1;
+    for (const doc of snapshot.docs) {
+        const data = doc.data();
+        if (data.name === userName && data.score === userScore) {
+            return placement;
+        }
+        placement++;
+    }
+    return null;
+}
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const BONUS_QUESTION_INDEX = 2; // Index of the bonus question in the array
@@ -111,7 +133,14 @@ function submitAnswer(answer) {
 
 function finishQuiz() {
     const quizDiv = document.getElementById("quiz");
-    quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}</p>`;
+    place = getUserPlacement();
+    if (place) {
+        const ordinal = getOrdinal(place);
+        quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}. You placed ${place}${ordinal} on the leaderboard!</p>`;
+    } else {
+        quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}. You are not on the leaderboard.</p>`;
+    }
+
 
     // Save the score to Firebase
     addDoc(collection(db, "scores"), {
