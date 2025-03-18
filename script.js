@@ -145,6 +145,7 @@ function loadLeaderboard() {
 // Expose functions to the global scope if needed
 window.startQuiz = startQuiz;
 window.loadLeaderboard = loadLeaderboard;
+window.finishQuiz = finishQuiz;
 
 function printQuestionsAndAnswers() {
     const quizDiv = document.getElementById("quiz");
@@ -172,6 +173,8 @@ function finishQuiz() {
     })
     .catch(error => console.error("Error saving score:", error));
 }
+
+
 
 // Start the quiz when page loads
 window.onload = () => {
