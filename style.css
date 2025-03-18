@@ -43,12 +43,21 @@ button:hover {
     padding: 20px;
     max-width: 600px;
     margin: 20px auto;
+    counter-reset: leaderboard-counter;
 }
 
 #leaderboard li {
     list-style: none;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+}
+
+#leaderboard li::before {
+    counter-increment: leaderboard-counter;
+    content: counter(leaderboard-counter) ". ";
+    position: absolute;
+    left: -30px;
+    font-weight: bold;
 }
 
 #leaderboard li:last-child {
