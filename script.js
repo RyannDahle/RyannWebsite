@@ -25,29 +25,29 @@ const db = getFirestore(app);
 // Quiz settings
 const questions = [
     {
-        question: "What is the capital of France?",
-        choices: ["Paris", "London", "Berlin"],
-        correct: "Paris"
+        question: "What is the first Pokémon in the Pokédex?",
+        choices: ["Bulbasaur", "Charmander", "Squirtle"],
+        correct: "Bulbasaur"
     },
     {
-        question: "What is the capital of Germany?",
-        choices: ["Munich", "Berlin", "Frankfurt"],
-        correct: "Berlin"
+        question: "Which type is Pikachu?",
+        choices: ["Electric", "Fire", "Water"],
+        correct: "Electric"
     },
     {
-        question: "What is the capital of Italy?",
-        choices: ["Rome", "Milan", "Naples"],
-        correct: "Rome"
+        question: "What is the evolved form of Eevee with a Water Stone?",
+        choices: ["Vaporeon", "Jolteon", "Flareon"],
+        correct: "Vaporeon"
     },
     {
-        question: "What is the capital of Spain?",
-        choices: ["Madrid", "Barcelona", "Seville"],
-        correct: "Madrid"
+        question: "Which Pokémon is known as the 'Fire Horse'?",
+        choices: ["Ponyta", "Rapidash", "Arcanine"],
+        correct: "Ponyta"
     },
     {
-        question: "What is the capital of Portugal?",
-        choices: ["Lisbon", "Porto", "Coimbra"],
-        correct: "Lisbon"
+        question: "What type is the Pokémon Gengar?",
+        choices: ["Ghost/Poison", "Psychic", "Dark"],
+        correct: "Ghost/Poison"
     }
 ];
 
