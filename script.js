@@ -141,40 +141,47 @@ function loadLeaderboard() {
     })
     .catch(error => console.error("Error loading leaderboard:", error));
 }
+function displayQuestionsAndAnswers() {
+    const quizDiv = document.getElementById("quiz");
+    
+    // Create a section for questions and answers
+    const qaSection = document.createElement("div");
+    qaSection.className = "questions-answers";
+    qaSection.innerHTML = "<h3>Quiz Questions and Answers</h3>";
+    
+    // Loop through all questions
+    questions.forEach((q, index) => {
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "qa-item";
+        
+        // Add bonus indicator
+        const bonusText = (index === BONUS_QUESTION_INDEX) ? " (Bonus Question)" : "";
+        
+        questionDiv.innerHTML = `
+            <p><strong>Question ${index + 1}${bonusText}:</strong> ${q.question}</p>
+            <p><strong>Correct answer:</strong> ${q.correct}</p>
+        `;
+        qaSection.appendChild(questionDiv);
+    });
+    
+    // Append to the quiz div
+    quizDiv.appendChild(qaSection);
+}
 
+// Store the original finishQuiz function
+const originalFinishQuiz = finishQuiz;
+
+// Override with enhanced version
+finishQuiz = function() {
+    // Call the original first
+    originalFinishQuiz();
+    
+    // Add a small delay to ensure the original finishQuiz has completed its DOM updates
+    setTimeout(displayQuestionsAndAnswers, 100);
+};
 // Expose functions to the global scope if needed
 window.startQuiz = startQuiz;
 window.loadLeaderboard = loadLeaderboard;
-window.finishQuiz = finishQuiz;
-
-function printQuestionsAndAnswers() {
-    const quizDiv = document.getElementById("quiz");
-    quizDiv.innerHTML += "<h3>Quiz Questions and Answers:</h3>";
-    questions.forEach((q, index) => {
-        quizDiv.innerHTML += `<p>${index + 1}. ${q.question}</p>`;
-        quizDiv.innerHTML += `<p>Correct Answer: ${q.correct}</p>`;
-    });
-}
-
-// Call the function after finishing the quiz
-function finishQuiz() {
-    const quizDiv = document.getElementById("quiz");
-    quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}</p>`;
-
-    // Save the score to Firebase
-    addDoc(collection(db, "scores"), {
-        name: userName,
-        score: userScore
-    })
-    .then(() => {
-        console.log("Score saved!");
-        loadLeaderboard();
-        printQuestionsAndAnswers(); // Print questions and answers
-    })
-    .catch(error => console.error("Error saving score:", error));
-}
-
-
 
 // Start the quiz when page loads
 window.onload = () => {
