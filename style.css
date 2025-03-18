@@ -50,11 +50,12 @@ button:hover {
     list-style: none;
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    position: relative;
 }
 
 #leaderboard li::before {
     counter-increment: leaderboard-counter;
-    content: counter(leaderboard-counter) ". ";
+    content: counter(leaderboard-counter) ".";
     position: absolute;
     left: -30px;
     font-weight: bold;
