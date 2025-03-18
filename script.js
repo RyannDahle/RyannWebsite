@@ -6,7 +6,8 @@ import {
     getDocs,
     query,
     orderBy,
-    limit
+    limit,
+    where // Add this line
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -55,9 +56,19 @@ let currentQuestion = 0;
 let userScore = 0;
 let userName = null;
 
-function startQuiz() {
+async function startQuiz() {
     userName = prompt("Enter your name:");
     if (!userName) return; // Cancelled prompt
+
+    // Check if the user has already played
+    const userQuery = query(collection(db, "scores"), where("name", "==", userName));
+    const userSnapshot = await getDocs(userQuery);
+
+    if (!userSnapshot.empty) {
+        alert("You have already played the quiz. You cannot play again.");
+        return;
+    }
+
     renderQuestion();
 }
 
