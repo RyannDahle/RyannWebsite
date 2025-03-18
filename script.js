@@ -25,29 +25,29 @@ const db = getFirestore(app);
 // Quiz settings
 const questions = [
     {
-        question: "What is the first Pokémon in the Pokédex?",
-        choices: ["Bulbasaur", "Charmander", "Squirtle"],
-        correct: "Bulbasaur"
+        question: "What is the smallest prime number?",
+        choices: ["1", "2", "3"],
+        correct: "2"
     },
     {
-        question: "Which type is Pikachu?",
-        choices: ["Electric", "Fire", "Water"],
-        correct: "Electric"
+        question: "What is Taylor Swift's middle name?",
+        choices: ["Marie", "Grace", "Alison"],
+        correct: "Alison"
     },
     {
-        question: "What is the evolved form of Eevee with a Water Stone?",
-        choices: ["Vaporeon", "Jolteon", "Flareon"],
-        correct: "Vaporeon"
+        question: "Which actress plays Brooke Davis in the TV show One Tree Hill?",
+        choices: ["Sophia Bush", "Hilarie Burton", "Brittany Snow"],
+        correct: "Sophia Bush"
     },
     {
-        question: "Which Pokémon is known as the 'Fire Horse'?",
-        choices: ["Ponyta", "Rapidash", "Arcanine"],
-        correct: "Ponyta"
+        question: "Which Pixar film features the song 'Life is a Highway'?",
+        choices: ["Cars", "Cars 2", "Cars 3"],
+        correct: "Cars"
     },
     {
-        question: "What type is the Pokémon Gengar?",
-        choices: ["Ghost/Poison", "Psychic", "Dark"],
-        correct: "Ghost/Poison"
+        question: "Which Brother duo hosts the Youtube channel Crash Course?",
+        choices: ["The Property Brothers", "The Green Brothers", "The Sprouse Brothers"],
+        correct: "The Green Brothers"
     }
 ];
 
