@@ -34,6 +34,9 @@ function submitAnswer(answer) {
     }).catch(error => console.error("Error saving score:", error));
 }
 
+// Expose functions to the global scope for HTML access
+window.submitAnswer = submitAnswer;
+
 // Fetch and display leaderboard
 // Fetch and display leaderboard
 function loadLeaderboard() {
@@ -49,8 +52,11 @@ function loadLeaderboard() {
             let li = document.createElement("li");
             li.innerText = `${data.name}: ${data.score} points`;
             leaderboard.appendChild(li);
-        });
-    }).catch(error => console.error("Error loading leaderboard:", error));
+// Load leaderboard on page load
+window.onload = loadLeaderboard;
+
+// Expose functions to the global scope
+window.loadLeaderboard = loadLeaderboard;ror("Error loading leaderboard:", error));
 }
 // Load leaderboard on page load
 window.onload = loadLeaderboard;
