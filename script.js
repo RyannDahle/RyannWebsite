@@ -12,7 +12,6 @@ import {
 
 
 
-
 function finishQuiz() {
     const quizDiv = document.getElementById("quiz");
     quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}</p>`;
@@ -65,29 +64,54 @@ const BONUS_QUESTION_INDEX = 2; // Index of the bonus question in the array
 // Quiz settings
 const questions = [
     {
-        question: "What is the smallest prime number?",
-        choices: ["1", "2", "3"],
-        correct: "2"
+        question: "What is the name of SpongeBob's pet snail?",
+        choices: ["Gary", "Larry", "Barry"],
+        correct: "Gary"
     },
     {
-        question: "What is Taylor Swift's middle name?",
-        choices: ["Marie", "Grace", "Alison"],
-        correct: "Alison"
+        question: "What is the name of the restaurant where SpongeBob works?",
+        choices: ["The Krusty Krab", "The Chum Bucket", "The Salty Spitoon"],
+        correct: "The Krusty Krab"
     },
     {
-        question: "Which actress plays Brooke Davis in the TV show One Tree Hill?",
-        choices: ["Sophia Bush", "Hilarie Burton", "Brittany Snow"],
-        correct: "Sophia Bush"
+        question: "Who is SpongeBob's best friend?",
+        choices: ["Patrick", "Squidward", "Sandy"],
+        correct: "Patrick"
     },
     {
-        question: "Which Pixar film features the song 'Life is a Highway'?",
-        choices: ["Cars", "Cars 2", "Cars 3"],
-        correct: "Cars"
+        question: "What is the name of SpongeBob's boss?",
+        choices: ["Mr. Krabs", "Plankton", "Bubble Bass"],
+        correct: "Mr. Krabs"
     },
     {
-        question: "Which Brother duo hosts the Youtube channel Crash Course?",
-        choices: ["The Property Brothers", "The Green Brothers", "The Sprouse Brothers"],
-        correct: "The Green Brothers"
+        question: "What instrument does Squidward play?",
+        choices: ["Clarinet", "Flute", "Saxophone"],
+        correct: "Clarinet"
+    },
+    {
+        question: "What is the name of SpongeBob's boating school teacher?",
+        choices: ["Mrs. Puff", "Ms. Flounder", "Mrs. Fish"],
+        correct: "Mrs. Puff"
+    },
+    {
+        question: "What is Plankton's full name?",
+        choices: ["Sheldon J. Plankton", "Steven P. Plankton", "Simon K. Plankton"],
+        correct: "Sheldon J. Plankton"
+    },
+    {
+        question: "What is the name of SpongeBob's superhero idol?",
+        choices: ["Mermaid Man", "Barnacle Boy", "Captain Kelp"],
+        correct: "Mermaid Man"
+    },
+    {
+        question: "What is the name of the town where SpongeBob lives?",
+        choices: ["Bikini Bottom", "Shell City", "Coral Cove"],
+        correct: "Bikini Bottom"
+    },
+    {
+        question: "What food is SpongeBob known for making?",
+        choices: ["Krabby Patties", "Chum Burgers", "Seaweed Wraps"],
+        correct: "Krabby Patties"
     }
 ];
 
