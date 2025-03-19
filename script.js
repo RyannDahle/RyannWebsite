@@ -64,54 +64,54 @@ const BONUS_QUESTION_INDEX = 2; // Index of the bonus question in the array
 // Quiz settings
 const questions = [
     {
-        question: "What is the name of SpongeBob's pet snail?",
-        choices: ["Gary", "Larry", "Barry"],
-        correct: "Gary"
+        question: "What is the name of the company where the severed employees work?",
+        choices: ["Eagan Enterprises", "Lumon Industries", "Macrodata Refinement"],
+        correct: "Lumon Industries"
     },
     {
-        question: "What is the name of the restaurant where SpongeBob works?",
-        choices: ["The Krusty Krab", "The Chum Bucket", "The Salty Spitoon"],
-        correct: "The Krusty Krab"
+        question: "What is the name of the department where Mark works?",
+        choices: ["Optics and Design", "Macrodata Refinement", "Wellness Center"],
+        correct: "Macrodata Refinement"
     },
     {
-        question: "Who is SpongeBob's best friend?",
-        choices: ["Patrick", "Squidward", "Sandy"],
-        correct: "Patrick"
+        question: "What is the name of the procedure that separates work and personal memories?",
+        choices: ["Partitioning", "Severance", "Memory Split"],
+        correct: "Severance"
     },
     {
-        question: "What is the name of SpongeBob's boss?",
-        choices: ["Mr. Krabs", "Plankton", "Bubble Bass"],
-        correct: "Mr. Krabs"
+        question: "Who is the founder of Lumon Industries?",
+        choices: ["Mark Scout", "Helly R.", "Kier Eagan"],
+        correct: "Kier Eagan"
     },
     {
-        question: "What instrument does Squidward play?",
-        choices: ["Clarinet", "Flute", "Saxophone"],
-        correct: "Clarinet"
+        question: "What is the name of the wellness counselor?",
+        choices: ["Ms. Cobel", "Ms. Selvig", "Ms. Casey"],
+        correct: "Ms. Casey"
     },
     {
-        question: "What is the name of SpongeBob's boating school teacher?",
-        choices: ["Mrs. Puff", "Ms. Flounder", "Mrs. Fish"],
-        correct: "Mrs. Puff"
+        question: "What is the name of the mysterious book that influences the employees?",
+        choices: ["The Lumon Handbook", "The You You Are", "The Eagan Doctrine"],
+        correct: "The You You Are"
     },
     {
-        question: "What is Plankton's full name?",
-        choices: ["Sheldon J. Plankton", "Steven P. Plankton", "Simon K. Plankton"],
-        correct: "Sheldon J. Plankton"
+        question: "What is the name of the rebellious employee who escapes?",
+        choices: ["Dylan", "Irving", "Petey"],
+        correct: "Petey"
     },
     {
-        question: "What is the name of SpongeBob's superhero idol?",
-        choices: ["Mermaid Man", "Barnacle Man", "Captain Kelp"],
-        correct: "Mermaid Man"
+        question: "What is the name of the device used to sever memories?",
+        choices: ["The Neural Splitter", "The Severance Chip", "The Partition Implant"],
+        correct: "The Severance Chip"
     },
     {
-        question: "What is the name of the town where SpongeBob lives?",
-        choices: ["Bikini Bottom", "Shell City", "Coral Cove"],
-        correct: "Bikini Bottom"
+        question: "What is the name of the mysterious painting in the office?",
+        choices: ["The Eagan Portrait", "The Macrodata Vision", "The Four Tempers"],
+        correct: "The Four Tempers"
     },
     {
-        question: "What food is SpongeBob known for making?",
-        choices: ["Krabby Patties", "Chum Burgers", "Seaweed Wraps"],
-        correct: "Krabby Patties"
+        question: "What is the name of the secret passageway discovered by the employees?",
+        choices: ["The Hidden Corridor", "The Eagan Tunnel", "The Perpetuity Wing"],
+        correct: "The Perpetuity Wing"
     }
 ];
 
