@@ -1,4 +1,18 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    limit,
+    where // Add this line
+} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+
+
+
 function finishQuiz() {
     const quizDiv = document.getElementById("quiz");
     quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}</p>`;
@@ -31,6 +45,9 @@ function finishQuiz() {
     })
     .catch(error => console.error("Error:", error));
 }
+
+
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyACL2uv7OrlEi1aStBwpGAB0gMmlnQ0S9I",
@@ -131,21 +148,21 @@ function submitAnswer(answer) {
     renderQuestion();
 }
 
-function finishQuiz() {
-    const quizDiv = document.getElementById("quiz");
-    quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}</p>`;
+// function finishQuiz() {
+//     const quizDiv = document.getElementById("quiz");
+//     quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}</p>`;
 
-    // Save the score to Firebase
-    addDoc(collection(db, "scores"), {
-        name: userName,
-        score: userScore
-    })
-    .then(() => {
-        console.log("Score saved!");
-        loadLeaderboard();
-    })
-    .catch(error => console.error("Error saving score:", error));
-}
+//     // Save the score to Firebase
+//     addDoc(collection(db, "scores"), {
+//         name: userName,
+//         score: userScore
+//     })
+//     .then(() => {
+//         console.log("Score saved!");
+//         loadLeaderboard();
+//     })
+//     .catch(error => console.error("Error saving score:", error));
+// }
 
 function loadLeaderboard() {
     const leaderboard = document.getElementById("leaderboard");
