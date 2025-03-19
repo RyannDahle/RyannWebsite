@@ -100,7 +100,7 @@ const questions = [
     },
     {
         question: "What is the name of SpongeBob's superhero idol?",
-        choices: ["Mermaid Man", "Barnacle Boy", "Captain Kelp"],
+        choices: ["Mermaid Man", "Barnacle Man", "Captain Kelp"],
         correct: "Mermaid Man"
     },
     {
