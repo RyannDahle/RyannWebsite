@@ -166,7 +166,7 @@ function submitAnswer(answer) {
 
 function loadLeaderboard() {
     const leaderboard = document.getElementById("leaderboard");
-    const q = query(collection(db, "scores"), orderBy("score", "desc"), limit(5));
+    const q = query(collection(db, "scores"), orderBy("score", "desc"), limit(10));
     leaderboard.innerHTML = "";
 
     getDocs(q)
