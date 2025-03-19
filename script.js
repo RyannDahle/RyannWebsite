@@ -89,7 +89,7 @@ const questions = [
         correct: "Ms. Casey"
     },
     {
-        question: "What is the name of the mysterious book that influences the employees?",
+        question: "What is the name of the mysterious book written by Ricken that influences the employees?",
         choices: ["The Lumon Handbook", "The You You Are", "The Eagan Doctrine"],
         correct: "The You You Are"
     },
