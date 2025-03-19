@@ -108,11 +108,7 @@ const questions = [
         choices: ["The Eagan Portrait", "The Macrodata Vision", "The Four Tempers"],
         correct: "The Four Tempers"
     },
-    {
-        question: "What is the name of the secret passageway discovered by the employees?",
-        choices: ["The Hidden Corridor", "The Eagan Tunnel", "The Perpetuity Wing"],
-        correct: "The Perpetuity Wing"
-    }
+
 ];
 
 let currentQuestion = 0;
