@@ -188,6 +188,47 @@ function submitAnswer(answer) {
 //     .catch(error => console.error("Error saving score:", error));
 // }
 
+function displayQuestionsAndAnswers() {
+    const quizDiv = document.getElementById("quiz");
+    
+    // Create a section for questions and answers
+    const qaSection = document.createElement("div");
+    qaSection.className = "questions-answers";
+    qaSection.innerHTML = "<h3>Quiz Questions and Answers</h3>";
+    
+    // Loop through all questions
+    questions.forEach((q, index) => {
+        const questionDiv = document.createElement("div");
+        questionDiv.className = "qa-item";
+        
+        // Add bonus indicator
+        const bonusText = (index === BONUS_QUESTION_INDEX) ? " (Bonus Question)" : "";
+        
+        questionDiv.innerHTML = `
+            <p><strong>Question ${index + 1}${bonusText}:</strong> ${q.question}</p>
+            <p><strong>Correct answer:</strong> ${q.correct}</p>
+        `;
+        qaSection.appendChild(questionDiv);
+    });
+    
+    // Append to the quiz div
+    quizDiv.appendChild(qaSection);
+}
+
+// Store the original finishQuiz function
+const originalFinishQuiz = finishQuiz;
+
+// Override with enhanced version
+finishQuiz = function() {
+    // Call the original first
+    originalFinishQuiz();
+    
+    // Add a small delay to ensure the original finishQuiz has completed its DOM updates
+    setTimeout(displayQuestionsAndAnswers, 100);
+};
+
+
+
 function loadLeaderboard() {
     const leaderboard = document.getElementById("leaderboard");
     const q = query(collection(db, "scores"), orderBy("score", "desc"), limit(10));
