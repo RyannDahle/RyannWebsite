@@ -60,7 +60,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const BONUS_QUESTION_INDEX = 19; // Index of the bonus question in the array
+const BONUS_QUESTION_INDEX = 20; // Index of the bonus question in the array
 // Quiz settings
 const questions = [
     {
