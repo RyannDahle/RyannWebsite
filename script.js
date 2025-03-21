@@ -9,7 +9,9 @@ import {
     limit,
     where // Add this line
 } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
-
+// Prevent the website from triggering the print dialog on load
+window.onbeforeprint = null;
+window.onafterprint = null;
 
 
 function finishQuiz() {
