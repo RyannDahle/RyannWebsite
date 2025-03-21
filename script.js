@@ -60,56 +60,116 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const BONUS_QUESTION_INDEX = 2; // Index of the bonus question in the array
+const BONUS_QUESTION_INDEX = 19; // Index of the bonus question in the array
 // Quiz settings
 const questions = [
     {
-        question: "What is the name of the company where the severed employees work?",
-        choices: ["Eagan Enterprises", "Lumon Industries", "Macrodata Refinement"],
-        correct: "Lumon Industries"
+        question: "What was Ryann’s first residency interview invite?",
+        choices: ["University of South Alabama", "LSU-Shreveport", "Marshall University", "Emory University", "Indiana University"],
+        correct: "Marshall University"
     },
     {
-        question: "What is the name of the department where Mark works?",
-        choices: ["Optics and Design", "Macrodata Refinement", "Wellness Center"],
-        correct: "Macrodata Refinement"
+        question: "If Ryann didn’t do med/peds what specialty would he do?",
+        choices: ["Radiology", "Pediatrics", "Anesthesiology", "Radiation Oncology", "Child Neurology", "Physical Medicine and Rehabilitation"],
+        correct: "Radiation Oncology"
     },
     {
-        question: "What is the name of the procedure that separates work and personal memories?",
-        choices: ["Partitioning", "Severance", "Memory Split"],
-        correct: "Severance"
+        question: "Which baby did Ryann help deliver?",
+        choices: ["Ella", "Emersyn", "Josie"],
+        correct: "Emersyn"
     },
     {
-        question: "Who is the founder of Lumon Industries?",
-        choices: ["Mark Scout", "Helly R.", "Kier Eagan"],
-        correct: "Kier Eagan"
+        question: "What is Ryann’s GPA?",
+        choices: ["2.5-2.75", "2.75-3.00", "3.00-3.25", "3.25-3.50", "3.5-3.75", "3.75-4.00"],
+        correct: "3.75-4.00"
     },
     {
-        question: "What is the name of the wellness counselor?",
-        choices: ["Ms. Cobel", "Ms. Selvig", "Ms. Casey"],
-        correct: "Ms. Casey"
+        question: "What song could Ryann sing every word in karaoke?",
+        choices: ["Tennessee Whiskey", "Free Fallin", "My Humps", "Girls Just Want to Have Fun", "Accidentally in Love"],
+        correct: "My Humps"
     },
     {
-        question: "What is the name of the mysterious book written by Ricken that influences the employees?",
-        choices: ["The Lumon Handbook", "The You You Are", "The Eagan Doctrine"],
-        correct: "The You You Are"
+        question: "What song could Hannah sing every word in Karaoke?",
+        choices: ["Sweet Escape", "Pink Pony Club", "I Will Survive", "Zombie", "The Real Slim Shady"],
+        correct: "Sweet Escape"
     },
     {
-        question: "What is the name of the rebellious employee who escapes?",
-        choices: ["Dylan", "Irving", "Petey"],
-        correct: "Petey"
+        question: "What food did Noah eat way too much of and got a tummy ache the night Ryann and Hannah decided to go to Meharry?",
+        choices: ["Macaroni and Cheese", "Pasta Salad", "Spinach Dip", "Pizza Rolls", "Deviled Eggs"],
+        correct: "Pasta Salad"
     },
     {
-        question: "What is the name of the device used to sever memories?",
-        choices: ["The Neural Splitter", "The Severance Chip", "The Partition Implant"],
-        correct: "The Severance Chip"
+        question: "What was Ryann’s favorite organ system block in medical school?",
+        choices: ["Neurology", "Reproductive systems", "Endocrine", "Hematology", "Nephrology", "Cardiology"],
+        correct: "Cardiology"
     },
     {
-        question: "What is the name of the mysterious painting in the office?",
-        choices: ["The Eagan Portrait", "The Macrodata Vision", "The Four Tempers"],
-        correct: "The Four Tempers"
+        question: "What does Rosie always ask Ryann to get her?",
+        choices: ["Raffle Tickets", "Ice Cream", "Cookies", "Donuts", "Colored Pencils"],
+        correct: "Donuts"
     },
-
+    {
+        question: "What is Ryann’s career goal/What type of Dr does he want to be?",
+        choices: ["Adolescent Medicine", "Hematologist/Oncologist", "Cardiologist", "Neonatologist", "Pediatric Hospitalist", "Pulmonology/Critical Care"],
+        correct: "Hematologist/Oncologist"
+    },
+    {
+        question: "What is Ryann’s go to Coffee order?",
+        choices: ["Pumpkin spice latte", "Chai latte with a shot of espresso", "Hot Vanilla Latte", "Iced Caramel Latte", "Iced Americano"],
+        correct: "Hot Vanilla Latte"
+    },
+    {
+        question: "What is Hannah’s go to coffee order?",
+        choices: ["Iced Caramel Latte", "Hot Caramel Latte", "Cold Brew", "Frappuccino", "Brown Sugar Shaken Espresso"],
+        correct: "Iced Caramel Latte"
+    },
+    {
+        question: "How many interviews did Ryann receive?",
+        choices: ["5-10", "10-15", "15-20", "20-25", "25-30", "30+"],
+        correct: "20-25"
+    },
+    {
+        question: "What is Ryann doing his research on?",
+        choices: ["Tau2 Gene associated with Alzheimer’s", "P53 gene and effects on the cancer cell cycle", "Chronic Kidney Disease and Wolf-Hirschhorn Syndrome", "Ryann is lazy and doesn’t wanna do research"],
+        correct: "Chronic Kidney Disease and Wolf-Hirschhorn Syndrome"
+    },
+    {
+        question: "How many times did Ryann apply to medical school?",
+        choices: ["1", "2", "3", "4"],
+        correct: "1"
+    },
+    {
+        question: "What did Hannah make for Ryann’s intramural softball team?",
+        choices: ["Cookies", "Cake Pops", "Jerseys", "Matching Socks", "Trail Mix"],
+        correct: "Jerseys"
+    },
+    {
+        question: "Proudest achievement in medical school?",
+        choices: ["Passing Step 1 and Step 2", "GPA", "Number of Interviews", "Intubating a patient", "Submitting the residency application with 6 minutes to spare", "Merit Scholarship"],
+        correct: "Submitting the residency application with 6 minutes to spare"
+    },
+    {
+        question: "What was Ryann’s least favorite part of medical school?",
+        choices: ["Written Exams", "Ethics Courses", "OSCE’s (Objective Structured Clinical Examinations)"],
+        correct: "OSCE’s (Objective Structured Clinical Examinations)"
+    },
+    {
+        question: "What group is Ryann the president of in Medical school?",
+        choices: ["Med/Peds Interest Group", "Parents in Medical School", "Oncology Interest Group", "Curriculum Committee", "Pediatric Developmental Disabilities Interest Group"],
+        correct: "Oncology Interest Group"
+    },
+    {
+        question: "What color scrubs was Ryann’s medical school class?",
+        choices: ["Blue", "Black", "Red", "Green", "Gray"],
+        correct: "Green"
+    },
+    {
+        question: "Where did Ryann match??",
+        choices: ["Vanderbilt", "UT-Memphis", "SC-Greenville", "UAB", "Emory", "Kentucky", "Indiana", "Baylor"],
+        correct: "Emory"
+    }   
 ];
+print(questions.length)
 
 let currentQuestion = 0;
 let userScore = 0;
@@ -158,9 +218,9 @@ function submitAnswer(answer) {
     if (answer === current.correct) {
         // Check if the current question is the bonus question
         if (currentQuestion === BONUS_QUESTION_INDEX) {
-            userScore += 20; // Double points for the bonus question
+            userScore += 15; // Triple points for the bonus question
         } else {
-            userScore += 10;
+            userScore += 5;
         }
     }
     
@@ -200,10 +260,15 @@ function displayQuestionsAndAnswers() {
         // Add bonus indicator
         const bonusText = (index === BONUS_QUESTION_INDEX) ? " (Bonus Question)" : "";
         
-        questionDiv.innerHTML = `
-            <p><strong>Question ${index + 1}${bonusText}:</strong> ${q.question}</p>
-            <p><strong>Correct answer:</strong> ${q.correct}</p>
-        `;
+        if (index === BONUS_QUESTION_INDEX) {
+            questionDiv.innerHTML = `<p><strong>Bonus Question:</strong> ${q.question}</p>`;
+        } 
+        else {
+            questionDiv.innerHTML = `
+                <p><strong>Question ${index + 1}${bonusText}:</strong> ${q.question}</p>
+                <p><strong>Correct answer:</strong> ${q.correct}</p>
+            `;
+        }
         qaSection.appendChild(questionDiv);
     });
     
