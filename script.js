@@ -26,10 +26,7 @@ function finishQuiz() {
         const placement = higherScores.length + 1;
         const totalPlayers = allScores.length + 1; // +1 to include current player
         
-        // Display the placement
-        const placementInfo = document.createElement("p");
-        placementInfo.innerText = `Your placement: ${placement} out of ${totalPlayers}`;
-        quizDiv.appendChild(placementInfo);
+
         
         // Save the score to Firebase
         return addDoc(collection(db, "scores"), {
