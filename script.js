@@ -14,7 +14,7 @@ import {
 
 function finishQuiz() {
     const quizDiv = document.getElementById("quiz");
-    quizDiv.innerHTML = `<p>You finished! Your score: ${userScore}</p>`;
+    quizDiv.innerHTML = `<p>You finished!</p>`;
     
     // First, get all existing scores to determine placement
     const allScoresQuery = query(collection(db, "scores"), orderBy("score", "desc"));
@@ -300,7 +300,7 @@ function loadLeaderboard() {
         snapshot.forEach(doc => {
             const data = doc.data();
             const li = document.createElement("li");
-            li.innerText = `${data.name}: ${data.score} points`;
+            li.innerText = `${data.name}:`;
             leaderboard.appendChild(li);
         });
     })
