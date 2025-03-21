@@ -300,7 +300,7 @@ function loadLeaderboard() {
         snapshot.forEach(doc => {
             const data = doc.data();
             const li = document.createElement("li");
-            li.innerText = `${data.name}:`;
+            li.innerText = `${data.name}`;
             leaderboard.appendChild(li);
         });
     })
@@ -316,3 +316,4 @@ window.onload = () => {
     loadLeaderboard();
     startQuiz();
 };
+
